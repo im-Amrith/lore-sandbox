@@ -5,7 +5,9 @@ TIMEOUT_SECONDS = 5
 
 
 def connect():
-    return sqlite3.connect(DB_PATH, timeout=TIMEOUT_SECONDS)
+    conn = sqlite3.connect(DB_PATH, timeout=TIMEOUT_SECONDS)
+    conn.execute("PRAGMA journal_mode=WAL")
+    return conn
 
 
 def get_link(code: str):
