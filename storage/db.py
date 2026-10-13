@@ -14,3 +14,8 @@ def get_link(code: str):
     with connect() as conn:
         row = conn.execute("SELECT url FROM links WHERE code = ?", (code,)).fetchone()
     return row[0] if row else None
+
+
+def save_link(code: str, url: str) -> None:
+    with connect() as conn:
+        conn.execute("INSERT INTO links (code, url) VALUES (?, ?)", (code, url))
