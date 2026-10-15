@@ -1,6 +1,6 @@
 # ADR 0001: Link cache
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-10-15
 
 ## Context
