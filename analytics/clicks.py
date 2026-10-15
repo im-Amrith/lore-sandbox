@@ -16,3 +16,8 @@ def record_click(code: str, day: date | None = None, source: str = "handler") ->
 
 def clicks_for(code: str, day: date) -> int:
     return _counts[(code, day)]
+
+
+def reset() -> None:
+    """Clear all counts (used by tests and the backfill script)."""
+    _counts.clear()
