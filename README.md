@@ -13,3 +13,8 @@ Tern is a demo URL shortener: it creates short links, redirects visitors and cou
 - `analytics/`: click counting and CSV export
 - `storage/`: database access and compaction
 - `docs/`: ADRs and feature docs
+
+## Decisions
+
+Architecture decisions are recorded as ADRs in [`docs/adr/`](docs/adr/). Feature docs live in `docs/`,
+starting with [link expiry](docs/expiry.md).
