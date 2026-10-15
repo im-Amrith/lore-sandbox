@@ -1,6 +1,6 @@
 # ADR 0002: Short codes
 
-- Status: Proposed
+- Status: Accepted
 - Date: 2026-10-15
 
 ## Context
