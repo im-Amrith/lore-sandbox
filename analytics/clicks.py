@@ -15,6 +15,7 @@ def record_click(code: str, day: date | None = None, source: str = "handler") ->
 
 
 def clicks_for(code: str, day: date) -> int:
+    """Clicks for one code on one day; matches the CSV export."""
     return _counts[(code, day)]
 
 
