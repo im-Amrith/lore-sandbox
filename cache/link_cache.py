@@ -1,24 +1,19 @@
-from collections import OrderedDict
+import redis
+
+TTL_SECONDS = 24 * 60 * 60
 
 
 class LinkCache:
-    """Per-process LRU of short code -> target URL."""
+    """Shared Redis cache of short code -> target URL, 24h TTL."""
 
-    def __init__(self, max_size: int = 10_000):
-        self.max_size = max_size
-        self._items: OrderedDict[str, str] = OrderedDict()
+    def __init__(self, url: str = "redis://cache:6379/0"):
+        self._redis = redis.Redis.from_url(url, decode_responses=True)
 
     def get(self, code: str):
-        if code in self._items:
-            self._items.move_to_end(code)
-            return self._items[code]
-        return None
+        return self._redis.get(f"link:{code}")
 
     def set(self, code: str, url: str) -> None:
-        self._items[code] = url
-        self._items.move_to_end(code)
-        if len(self._items) > self.max_size:
-            self._items.popitem(last=False)
+        self._redis.set(f"link:{code}", url, ex=TTL_SECONDS)
 
     def delete(self, code: str) -> None:
-        self._items.pop(code, None)
+        self._redis.delete(f"link:{code}")
