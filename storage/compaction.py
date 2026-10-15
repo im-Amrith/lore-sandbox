@@ -1,4 +1,8 @@
+import logging
+
 from storage.db import connect
+
+log = logging.getLogger(__name__)
 
 BATCH_SIZE = 1_000
 
@@ -11,6 +15,7 @@ def compact_clicks() -> None:
             with conn:
                 ids = [r[0] for r in conn.execute("SELECT id FROM raw_clicks LIMIT ?", (BATCH_SIZE,))]
                 if not ids:
+                    log.info("compaction finished")
                     break
                 marks = ",".join("?" * len(ids))
                 conn.execute(
