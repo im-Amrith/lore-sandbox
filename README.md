@@ -13,6 +13,7 @@ Tern is a demo URL shortener: it creates short links, redirects visitors and cou
 - `analytics/`: click counting and CSV export
 - `storage/`: database access and compaction
 - `docs/`: ADRs and feature docs
+- `tests/`: unit tests
 
 ## Decisions
 
