@@ -2,7 +2,7 @@ from api.codes import normalize_code
 from cache.link_cache import LinkCache
 from storage.db import get_link
 
-cache = LinkCache(max_size=10_000)
+cache = LinkCache()
 
 
 def redirect(code: str):
@@ -12,3 +12,9 @@ def redirect(code: str):
         return 404, None
     cache.set(code, url)
     return 302, url
+
+
+def edit_link(code: str, new_url: str):
+    # One delete invalidates the link for every replica.
+    cache.delete(code)
+    return 200, new_url
