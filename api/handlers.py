@@ -1,4 +1,3 @@
-from api.codes import normalize_code
 from cache.link_cache import LinkCache
 from storage.db import get_link
 
@@ -6,7 +5,8 @@ cache = LinkCache()
 
 
 def redirect(code: str):
-    code = normalize_code(code)
+    # Codes are case-sensitive: never change their case before lookup.
+    code = code.strip()
     url = cache.get(code) or get_link(code)
     if url is None:
         return 404, None
