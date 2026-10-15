@@ -1,6 +1,6 @@
 # ADR 0001: Link cache
 
-- Status: Accepted
+- Status: Superseded by [ADR 0003](0003-in-process-cache.md)
 - Date: 2026-10-15
 
 ## Context
