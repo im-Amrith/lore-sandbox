@@ -8,5 +8,5 @@ Links can have an optional expiry time, set when the link is created.
   then the nightly compaction job removes them.
 - Editing a link's target does not change its expiry; set a new `expires_at` explicitly to extend it.
 
-Expiry is checked at redirect tiem, so a cached link is still checked against `expires_at` before
+Expiry is checked at redirect time, so a cached link is still checked against `expires_at` before
 redirecting.
